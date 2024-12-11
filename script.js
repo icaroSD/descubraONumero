@@ -58,7 +58,7 @@
         
 
         function reinicio(){
-        erro = 0
+       /* erro = 0
         chance = 10
         erros.innerHTML = `${texto1} ${erro}`
         chances.innerHTML = `${texto2} ${chance}`
@@ -67,7 +67,8 @@
 
         btn.removeAttribute('disabled')
         reiniciar.disabled=true
-
+*/  
+            location.reload()
         
         }
 
