@@ -36,7 +36,7 @@
                 chance--
 
                 if(numero > numeroAleatorio){
-                    dica.innerHTML='O numero é MENORr'
+                    dica.innerHTML='O numero é MENOR'
                 }else{
                     dica.innerHTML='O numero é MAIOR '
                 }
