@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        p{font-size: 1.5rem;}
+    </style>
+<body>
+    <h1>Jogo descubra o numero</h1>
+    <p>Numero: <input type="text" name="" id="numero"></p>
+    <input type="button" id="btn" value="Apostar">
+    <button disabled id="btn2">Reiniciar</button>
+    <p id="erros"></p>
+    <p id="chances"></p>
+    <p id="dica"></p>
+
+
+    <script>
+
+        
+        let btn = document.getElementById('btn')
+        let reiniciar = document.getElementById('btn2')
+        
+        btn.addEventListener('click',palpite)
+        btn2.addEventListener('click',reinicio)
+
+        let numeroAleatorio = Math.floor(Math.random()*100)
+        let erro = 0
+        let chance = 10
+        let texto1 = 'Erro:'
+        let texto2 = 'Chances:'
+
+
+        let dica = document.getElementById("dica");
+        let chances = document.getElementById('chances')
+        let erros = document.getElementById('erros')
+
+ 
+
+        erros.innerHTML = `${texto1} ${erro}`
+        chances.innerHTML = `${texto2} ${chance}`
+        dica.innerHTML='é um numero entre 1 e 100 '
+
+        function palpite(){
+            let inNumero = document.getElementById('numero');
+            let numero = Number(inNumero.value)
+            
+            if(numero == numeroAleatorio){
+                dica.innerHTML=`Acertou!!! o numero é ${numeroAleatorio}`;
+                reiniciar.removeAttribute('disabled')
+                btn.disabled=true
+            }else{
+                erro++
+                chance--
+
+                if(numero > numeroAleatorio){
+                    dica.innerHTML='o numero é menor'
+                }else{
+                    dica.innerHTML='o numero é maior '
+                }
+            }
+
+            erros.innerHTML = `${texto1} ${erro}`
+            chances.innerHTML = `${texto2} ${chance}`
+
+            if(chance == 0){
+                dica.innerHTML='você perdeu o numero era '+ numeroAleatorio;
+                reiniciar.removeAttribute('disabled')
+                btn.disabled=true
+            }   
+
+        
+           inNumero.value =''
+           inNumero.focus()
+        }
+        
+
+        function reinicio(){
+        erro = 0
+        chance = 10
+        erros.innerHTML = `${texto1} ${erro}`
+        chances.innerHTML = `${texto2} ${chance}`
+        dica.innerHTML='é um numero entre 1 e 100 '
+        numeroAleatorio = Math.floor(Math.random()*100)
+
+        btn.removeAttribute('disabled')
+        reiniciar.disabled=true
+
+        
+        }
+
+        
+        
+    </script>
+</body>
+</html>
